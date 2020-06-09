@@ -18,7 +18,7 @@ ERROR_LOG
 LOG
 """
 import pandas as pd
-path = 'xl/未入组.xlsx'
+path = '未入组.xlsx'
 
 def get_excel_data(excel_name, column_name):
     df = pd.read_excel(excel_name,keep_default_na=False)
@@ -45,22 +45,43 @@ log = get_excel_data(path,'LOG')
 
 #分成五部分
 #9999
-base_id1 = [base_id[i] for i in range(len(base_id)) if drg_code[i] == '9999']
-sex1 = [sex[i] for i in range(len(base_id)) if drg_code[i] == '9999']
-age1 = [age[i] for i in range(len(base_id)) if drg_code[i] == '9999']
-baby_age1 = [baby_age[i] for i in range(len(base_id)) if drg_code[i] == '9999']
-in_days1 = [in_days[i] for i in range(len(base_id)) if drg_code[i] == '9999']
-hos_amout1 = [hos_amout[i] for i in range(len(base_id)) if drg_code[i] == '9999']
-main_diag_code1 = [main_diag_code[i] for i in range(len(base_id)) if drg_code[i] == '9999']
-main_diag_name1 = [main_diag_name[i] for i in range(len(base_id)) if drg_code[i] == '9999']
-other_diags_code1 = [other_diags_code[i] for i in range(len(base_id)) if drg_code[i] == '9999']
-other_oper_code1 = [other_oper_code[i] for i in range(len(base_id)) if drg_code[i] == '9999']
-mdc_code1 = [mdc_code[i] for i in range(len(base_id)) if drg_code[i] == '9999']
-adrg_code1 = [adrg_code[i] for i in range(len(base_id)) if drg_code[i] == '9999']
-drg_code1 = [drg_code[i] for i in range(len(base_id)) if drg_code[i] == '9999']
-oper_code1 = [oper_code[i] for i in range(len(base_id)) if drg_code[i] == '9999']
-error_log1 = [error_log[i] for i in range(len(base_id)) if drg_code[i] == '9999']
-log1 = [log[i] for i in range(len(base_id)) if drg_code[i] == '9999']
+base_id11 = [base_id[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+sex11 = [sex[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+age11 = [age[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+baby_age11 = [baby_age[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+in_days11 = [in_days[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+hos_amout11 = [hos_amout[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+main_diag_code11 = [main_diag_code[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+main_diag_name11 = [main_diag_name[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+other_diags_code11 = [other_diags_code[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+other_oper_code11 = [other_oper_code[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+mdc_code11 = [mdc_code[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+adrg_code11 = [adrg_code[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+drg_code11 = [drg_code[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+oper_code11 = [oper_code[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+error_log11 = [error_log[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+log11 = [log[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+note11 = []
+for i in range(len(base_id11)):
+    note11.append('住院时长超过60天')
+base_id12 = [base_id[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0) ]
+sex12 = [sex[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
+age12 = [age[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
+baby_age12 = [baby_age[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
+in_days12 = [in_days[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
+hos_amout12 = [hos_amout[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
+main_diag_code12 = [main_diag_code[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
+main_diag_name12 = [main_diag_name[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
+other_diags_code12 = [other_diags_code[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
+other_oper_code12 = [other_oper_code[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
+mdc_code12 = [mdc_code[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
+adrg_code12 = [adrg_code[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
+drg_code12 = [drg_code[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
+oper_code12 = [oper_code[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
+error_log12 = [error_log[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
+log12 = [log[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
+for  i in range(len(base_id12)):
+    note11.append("费用异常：住院费用/住院时长<5")
 
 
 
