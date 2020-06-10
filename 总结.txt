@@ -1,4 +1,4 @@
-根据drg_code有无分：0000，9999，以及drg_code为空三类，
+  根据drg_code有无分：0000，9999，以及drg_code为空三类，
 				drg_code为空，分为
 					1.有mdc,有adrg,无drg,
 					2.有mdc,无adrg

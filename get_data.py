@@ -18,7 +18,6 @@ ERROR_LOG
 LOG
 """
 import pandas as pd
-from CtoE import *
 path1 = '未入组.xlsx'
 path2 = '2019诊断详情.xlsx' # 2019诊断详情
 path3 = '国临2.0诊断编码.xlsx' # 国临2.0诊断编码
@@ -52,90 +51,90 @@ log = get_excel_data(path1,'LOG')
 
 #分成五部分
 #9999
-def data_9999_1(zd,bi,drg):
-    return [zd[i] for i in range(len(bi)) if drg[i] == '9999']
+def data_9999_1(zd):
+    return [zd[i] for i in range(len(base_id)) if drg_code[i] == '9999']
 
-base_id1 =data_9999_1(base_id,base_id,drg_code)
-sex1 = data_9999_1(sex,base_id,drg_code)
-age1 = data_9999_1(age,base_id,drg_code)
-baby_age1 = data_9999_1(baby_age,base_id,drg_code)
-in_days1 = data_9999_1(in_days,base_id,drg_code)
-hos_amount1 = data_9999_1(hos_amount,base_id,drg_code)
-main_diag_code1 = data_9999_1(main_diag_code,base_id,drg_code)
-main_diag_name1 = data_9999_1(main_diag_name,base_id,drg_code)
-other_diags_code1 = data_9999_1(other_diags_code,base_id,drg_code)
-other_oper_code1 = data_9999_1(other_oper_code,base_id,drg_code)
-mdc_code1 = data_9999_1(mdc_code,base_id,drg_code)
-adrg_code1 = data_9999_1(adrg_code,base_id,drg_code)
-drg_code1 = data_9999_1(drg_code,base_id,drg_code)
-oper_code1 = data_9999_1(oper_code,base_id,drg_code)
-error_log1 = data_9999_1(error_log,base_id,drg_code)
-log1 = data_9999_1(log,base_id,drg_code)
+base_id1 =data_9999_1(base_id)
+sex1 = data_9999_1(sex)
+age1 = data_9999_1(age)
+baby_age1 = data_9999_1(baby_age)
+in_days1 = data_9999_1(in_days)
+hos_amount1 = data_9999_1(hos_amount)
+main_diag_code1 = data_9999_1(main_diag_code)
+main_diag_name1 = data_9999_1(main_diag_name)
+other_diags_code1 = data_9999_1(other_diags_code)
+other_oper_code1 = data_9999_1(other_oper_code)
+mdc_code1 = data_9999_1(mdc_code)
+adrg_code1 = data_9999_1(adrg_code)
+drg_code1 = data_9999_1(drg_code)
+oper_code1 = data_9999_1(oper_code)
+error_log1 = data_9999_1(error_log)
+log1 = data_9999_1(log)
 
-def data_9999_2(zd,bi,drg,indays):
-    return [zd[i] for i in range(len(bi)) if drg[i] == '9999' and indays[i]>60]
-base_id11 = data_9999_2(base_id1,base_id1,drg_code1,in_days1)
-sex11  = data_9999_2(sex1,base_id1,drg_code1,in_days1)
-age11 = data_9999_2(age1,base_id1,drg_code1,in_days1)
-baby_age11 = data_9999_2(baby_age1,base_id1,drg_code1,in_days1)
-in_days11 = data_9999_2(in_days1,base_id1,drg_code1,in_days1)
-hos_amount11 = data_9999_2(hos_amount1,base_id1,drg_code1,in_days1)
-main_diag_code11 = data_9999_2(main_diag_code1,base_id1,drg_code1,in_days1)
-main_diag_name11 = data_9999_2(main_diag_name1,base_id1,drg_code1,in_days1)
-other_diags_code11 = data_9999_2(other_diags_code1,base_id1,drg_code1,in_days1)
-other_oper_code11 = data_9999_2(other_oper_code1,base_id1,drg_code1,in_days1)
-mdc_code11 = data_9999_2(mdc_code1,base_id1,drg_code1,in_days1)
-adrg_code11 = data_9999_2(adrg_code1,base_id1,drg_code1,in_days1)
-drg_code11 = data_9999_2(drg_code1,base_id1,drg_code1,in_days1)
-oper_code11 = data_9999_2(oper_code1,base_id1,drg_code1,in_days1)
-error_log11 = data_9999_2(error_log1,base_id1,drg_code1,in_days1)
-log11 = data_9999_2(log1,base_id1,drg_code1,in_days1)
+def data_9999_2(zd):
+    return [zd[i] for i in range(len(base_id1)) if drg_code1[i] == '9999' and in_days1[i]>60]
+base_id11 = data_9999_2(base_id1)
+sex11  = data_9999_2(sex1)
+age11 = data_9999_2(age1)
+baby_age11 = data_9999_2(baby_age1)
+in_days11 = data_9999_2(in_days1)
+hos_amount11 = data_9999_2(hos_amount1)
+main_diag_code11 = data_9999_2(main_diag_code1)
+main_diag_name11 = data_9999_2(main_diag_name1)
+other_diags_code11 = data_9999_2(other_diags_code1)
+other_oper_code11 = data_9999_2(other_oper_code1)
+mdc_code11 = data_9999_2(mdc_code1)
+adrg_code11 = data_9999_2(adrg_code1)
+drg_code11 = data_9999_2(drg_code1)
+oper_code11 = data_9999_2(oper_code1)
+error_log11 = data_9999_2(error_log1)
+log11 = data_9999_2(log1)
 note11 = []
 for i in range(len(base_id11)):
     note11.append('住院时长超过60天')
 
 
-def data_9999_3(zd,bi,drg,indays,amount):
-    return [zd[i] for i in range(len(bi)) if (drg[i] == '9999' and indays[i]!=0 and amount[i]/indays[i]<5) or (drg[i] == '9999' and indays[i] == 0) ]
+def data_9999_3(zd):
+    return [zd[i] for i in range(len(base_id1)) if (drg_code1[i] == '9999' and in_days1[i]!=0 and hos_amount1[i]/in_days1[i]<5) or (drg_code1[i] == '9999' and in_days1[i] == 0) ]
 
-base_id12 = data_9999_3(base_id1,base_id1,drg_code1,in_days1,hos_amount1)
-sex12 = data_9999_3(sex1,base_id1,drg_code1,in_days1,hos_amount1)
-age12 = data_9999_3(age1,base_id1,drg_code1,in_days1,hos_amount1)
-baby_age12 = data_9999_3(baby_age1,base_id1,drg_code1,in_days1,hos_amount1)
-in_days12 = data_9999_3(in_days1,base_id1,drg_code1,in_days1,hos_amount1)
-hos_amount12 = data_9999_3(hos_amount1,base_id1,drg_code1,in_days1,hos_amount1)
-main_diag_code12 = data_9999_3(main_diag_code1,base_id1,drg_code1,in_days1,hos_amount1)
-main_diag_name12 = data_9999_3(main_diag_name1,base_id1,drg_code1,in_days1,hos_amount1)
-other_diags_code12 = data_9999_3(other_diags_code1,base_id1,drg_code1,in_days1,hos_amount1)
-other_oper_code12 = data_9999_3(other_oper_code1,base_id1,drg_code1,in_days1,hos_amount1)
-mdc_code12 = data_9999_3(mdc_code1,base_id1,drg_code1,in_days1,hos_amount1)
-adrg_code12 = data_9999_3(adrg_code1,base_id1,drg_code1,in_days1,hos_amount1)
-drg_code12 = data_9999_3(drg_code1,base_id1,drg_code1,in_days1,hos_amount1)
-oper_code12 = data_9999_3(oper_code1,base_id1,drg_code1,in_days1,hos_amount1)
-error_log12 = data_9999_3(error_log1,base_id1,drg_code1,in_days1,hos_amount1)
-log12 = data_9999_3(log1,base_id1,drg_code1,in_days1,hos_amount1)
+base_id12 = data_9999_3(base_id1)
+sex12 = data_9999_3(sex1)
+age12 = data_9999_3(age1)
+baby_age12 = data_9999_3(baby_age1)
+in_days12 = data_9999_3(in_days1)
+hos_amount12 = data_9999_3(hos_amount1)
+main_diag_code12 = data_9999_3(main_diag_code1)
+main_diag_name12 = data_9999_3(main_diag_name1)
+other_diags_code12 = data_9999_3(other_diags_code1)
+other_oper_code12 = data_9999_3(other_oper_code1)
+mdc_code12 = data_9999_3(mdc_code1)
+adrg_code12 = data_9999_3(adrg_code1)
+drg_code12 = data_9999_3(drg_code1)
+oper_code12 = data_9999_3(oper_code1)
+error_log12 = data_9999_3(error_log)
+log12 = data_9999_3(log1)
 note12 = []
 for i in range(len(base_id12)):
     note12.append('费用异常：住院费用/住院时间<5')
 # 0000
-def data_0000_1(zd,bi,drg):
-    return [zd[i] for i in range(len(bi)) if drg[i] == '0000']
-base_id2 = data_0000_1(base_id,base_id,drg_code)
-sex2 = data_0000_1(sex,base_id,drg_code)
-age2 = data_0000_1(age,base_id,drg_code)
-baby_age2 = data_0000_1(baby_age,base_id,drg_code)
-in_days2 = data_0000_1(in_days,base_id,drg_code)
-hos_amount2 = data_0000_1(hos_amount,base_id,drg_code)
-main_diag_code2 = data_0000_1(main_diag_code,base_id,drg_code)
-main_diag_name2 = data_0000_1(main_diag_name,base_id,drg_code)
-other_diags_code2 = data_0000_1(other_diags_code,base_id,drg_code)
-other_oper_code2 = data_0000_1(other_oper_code,base_id,drg_code)
-mdc_code2 = data_0000_1(mdc_code,base_id,drg_code)
-adrg_code2 = data_0000_1(adrg_code,base_id,drg_code)
-drg_code2 = data_0000_1(drg_code,base_id,drg_code)
-oper_code2 = data_0000_1(oper_code,base_id,drg_code)
-error_log2 = data_0000_1(error_log,base_id,drg_code)
-log2 = data_0000_1(log,base_id,drg_code)
+def data_0000_1(zd):
+    return [zd[i] for i in range(len(base_id)) if drg_code[i] == '0000']
+base_id2 = data_0000_1(base_id)
+sex2 = data_0000_1(sex)
+age2 = data_0000_1(age)
+baby_age2 = data_0000_1(baby_age)
+in_days2 = data_0000_1(in_days)
+hos_amount2 = data_0000_1(hos_amount)
+main_diag_code2 = data_0000_1(main_diag_code)
+main_diag_name2 = data_0000_1(main_diag_name)
+other_diags_code2 = data_0000_1(other_diags_code)
+other_oper_code2 = data_0000_1(other_oper_code)
+mdc_code2 = data_0000_1(mdc_code)
+adrg_code2 = data_0000_1(adrg_code)
+drg_code2 = data_0000_1(drg_code)
+oper_code2 = data_0000_1(oper_code)
+error_log2 = data_0000_1(error_log)
+log2 = data_0000_1(log)
 
 # 诊断详情
 diag_detail_id = get_excel_data(path2,'BASE_ID')
@@ -313,45 +312,100 @@ for i in range(len(base_id3)):
         note31.append("该病例诊断编码找不到对应的MDC组")
 #
 # # 有mdc，无adrg,无drg
-base_id4 = [base_id[i] for i in range(len(base_id)) if mdc_code[i] != '' and adrg_code == '']
-sex4 = [sex[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-age4 = [age[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-baby_age4 = [baby_age[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-in_days4 = [in_days[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-hos_amout4 = [hos_amount[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-main_diag_code4 = [main_diag_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-main_diag_name4 = [main_diag_name[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-other_diags_code4 = [other_diags_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-other_oper_code4 = [other_oper_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-mdc_code4 = [mdc_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-adrg_code4 = [adrg_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-drg_code4 = [drg_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-oper_code4 = [oper_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-error_log4 = [error_log[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-log4 = [log[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-
+base_id4 = [base_id[i] for i in range(len(base_id)) if mdc_code[i] != '' and adrg_code[i] == '']
+sex4 = [sex[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code[i] == '']
+age4 = [age[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code[i] == '']
+baby_age4 = [baby_age[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code[i] == '']
+in_days4 = [in_days[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code[i] == '']
+hos_amout4 = [hos_amount[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code[i] == '']
+main_diag_code4 = [main_diag_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code[i] == '']
+main_diag_name4 = [main_diag_name[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code[i] == '']
+other_diags_code4 = [other_diags_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code[i] == '']
+other_oper_code4 = [other_oper_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code[i] == '']
+mdc_code4 = [mdc_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code[i] == '']
+adrg_code4 = [adrg_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code[i] == '']
+drg_code4 = [drg_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code[i] == '']
+oper_code4 = [oper_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code[i] == '']
+error_log4 = [error_log[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code[i] == '']
+log4 = [log[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code[i] == '']
+note41 = []
+for i in range(len(base_id4)):
+    note41.append("应该入到adrg组")
 #drg_adrg_dic
 diag_code_adrg_dic = get_excel_data(path7,"DIAG_CODE")
 
 
 # # 有mdc  有adrg 无drg
 #
-base_id5 = [base_id[i] for i in range(len(base_id)) if mdc_code[i] != '' and adrg_code != '' and drg_code == '']
-sex5 = [sex[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
-age5 = [age[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
-baby_age5 = [baby_age[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
-in_days5 = [in_days[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
-hos_amout5 = [hos_amount[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
-main_diag_code5 = [main_diag_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
-main_diag_name5 = [main_diag_name[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
-other_diags_code5 = [other_diags_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
-other_oper_code5 = [other_oper_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
-mdc_code5 = [mdc_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
-adrg_code5 = [adrg_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
-drg_code5 = [drg_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
-oper_code5 = [oper_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
-error_log5 = [error_log[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
-log5 = [log[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
+base_id5 = [base_id[i] for i in range(len(base_id)) if mdc_code[i] != '' and adrg_code != '' and drg_code[i] == '']
+sex5 = [sex[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code[i] == '']
+age5 = [age[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code[i] == '']
+baby_age5 = [baby_age[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code[i] == '']
+in_days5 = [in_days[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code[i] == '']
+hos_amout5 = [hos_amount[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code[i] == '']
+main_diag_code5 = [main_diag_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code[i] == '']
+main_diag_name5 = [main_diag_name[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code[i] == '']
+other_diags_code5 = [other_diags_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code[i] == '']
+other_oper_code5 = [other_oper_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code[i] == '']
+mdc_code5 = [mdc_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code[i] == '']
+adrg_code5 = [adrg_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code[i] == '']
+drg_code5 = [drg_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code[i] == '']
+oper_code5 = [oper_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code[i] == '']
+error_log5 = [error_log[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code[i] == '']
+log5 = [log[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code[i] == '']
 note51 =[]
 for i in range(len(base_id5)):
     note51.append('该ADRG组没有细化到drg组')
+
+base_id_all = []
+note_all = []
+for i in range(len(base_id11)):
+    base_id_all.append(base_id11[i])
+print(len(base_id11),'base_id11')
+for i in range(len(note11)):
+    note_all.append(note11[i])
+print(len(note11),'note11')
+for i in range(len(base_id12)):
+    base_id_all.append(base_id12)
+print(len(base_id12),'base_id12')
+for i in range(len(note12)):
+    note_all.append(note12[i])
+print(len(note12),'note12')
+# for i in range(len(base_id21)):
+#     base_id_all.append(base_id21[i])
+# print(len(base_id21),'baseid21')
+for i in range(len(base_id22)):
+    base_id_all.append(base_id22[i])
+print(len(base_id22),'baseid22')
+for i in range(len(note22)):
+    note_all.append(note22[i])
+print(len(note22),'note22')
+for i in range(len(base_id23)):
+    base_id_all.append(base_id23[i])
+print(len(base_id23),'baseid23')
+for i in range(len(note23)):
+    note_all.append(note23[i])
+print(len(note23),note23)
+for i in range(len(base_id31)):
+    base_id_all.append(base_id31[i])
+print(len(base_id31),'baseid31')
+for i in range(len(note31)):
+    note_all.append(note31[i])
+print(len(note31),'note31')
+for i in range(len(base_id4)):
+    base_id_all.append(base_id4[i])
+print(len(base_id4),'baseid4')
+for i in range(len(note41)):
+    note_all.append(note41[i])
+print(len(note41),'note41')
+for i in range(len(base_id5)):
+    base_id_all.append(base_id5[i])
+print(len(base_id5),'baaseid5')
+for i in range(len(note51)):
+    note_all.append(note51[i])
+print(len(note51),'note51')
+dic = {}
+dic['base_id'] = base_id_all
+dic['note'] = note_all
+df4 = pd.DataFrame(dic)
+df4.to_excel('test.xlsx')
