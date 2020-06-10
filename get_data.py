@@ -330,6 +330,10 @@ oper_code4 = [oper_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and
 error_log4 = [error_log[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
 log4 = [log[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
 
+#drg_adrg_dic
+diag_code_adrg_dic = get_excel_data(path7,"DIAG_CODE")
+
+
 # # 有mdc  有adrg 无drg
 #
 base_id5 = [base_id[i] for i in range(len(base_id)) if mdc_code[i] != '' and adrg_code != '' and drg_code == '']
