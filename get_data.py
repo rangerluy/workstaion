@@ -18,98 +18,248 @@ ERROR_LOG
 LOG
 """
 import pandas as pd
-path = '未入组.xlsx'
+from CtoE import *
+path1 = '未入组.xlsx'
+path2 = '2019诊断详情.xlsx' # 2019诊断详情
+path3 = '国临2.0诊断编码.xlsx' # 国临2.0诊断编码
+path4 = '国临2-CHS直接映射.xlsx' # 国临2.0到CHS分组方案直接映射
+path5 = '国临2-CHS无法直接映射.xlsx' # 国临2.0无法直接映射到CHS分组方案
+path6 = 'CHS_DRGS_DIC_MDC.xlsx' # MDC_CODE与诊断名称对应表
+path7 = 'CHS_DRGS_DIC_ADRG_DIAG.xlsx' # ADRG与诊断名称对应表
+
 
 def get_excel_data(excel_name, column_name):
     df = pd.read_excel(excel_name,keep_default_na=False)
     return [i for i in df[column_name]]
 
-base_id =  get_excel_data(path,'BASE_ID')
-
-sex = get_excel_data(path,'SEX')
-age = get_excel_data(path,'AGE')
-baby_age = get_excel_data(path,'BABY_AGE')
-in_days = get_excel_data(path,'IN_DAYS')
-hos_amout = get_excel_data(path,'HOS_AMOUNT')
-main_diag_code = get_excel_data(path,'MAIN_DIAG_CODE')
-main_diag_name = get_excel_data(path,'MAIN_DIAG_NAME')
-other_diags_code = get_excel_data(path,'OTHER_DIAGS_CODE')
-other_oper_code = get_excel_data(path,'OTHER_OPER_CODE')
-mdc_code = get_excel_data(path,'MDC_CODE')
-adrg_code = get_excel_data(path,'ADRG_CODE')
-drg_code = get_excel_data(path,'DRG_CODE')
-oper_code = get_excel_data(path,'OPER_CODE')
-error_log = get_excel_data(path,'ERROR_LOG')
-log = get_excel_data(path,'LOG')
+base_id =  get_excel_data(path1,'BASE_ID')
+sex = get_excel_data(path1,'SEX')
+age = get_excel_data(path1,'AGE')
+baby_age = get_excel_data(path1,'BABY_AGE')
+in_days = get_excel_data(path1,'IN_DAYS')
+hos_amount = get_excel_data(path1,'HOS_AMOUNT')
+main_diag_code = get_excel_data(path1,'MAIN_DIAG_CODE')
+main_diag_name = get_excel_data(path1,'MAIN_DIAG_NAME')
+other_diags_code = get_excel_data(path1,'OTHER_DIAGS_CODE')
+other_oper_code = get_excel_data(path1,'OTHER_OPER_CODE')
+mdc_code = get_excel_data(path1,'MDC_CODE')
+adrg_code = get_excel_data(path1,'ADRG_CODE')
+drg_code = get_excel_data(path1,'DRG_CODE')
+oper_code = get_excel_data(path1,'OPER_CODE')
+error_log = get_excel_data(path1,'ERROR_LOG')
+log = get_excel_data(path1,'LOG')
 
 
 #分成五部分
 #9999
-base_id11 = [base_id[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
-sex11 = [sex[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
-age11 = [age[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
-baby_age11 = [baby_age[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
-in_days11 = [in_days[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
-hos_amout11 = [hos_amout[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
-main_diag_code11 = [main_diag_code[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
-main_diag_name11 = [main_diag_name[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
-other_diags_code11 = [other_diags_code[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
-other_oper_code11 = [other_oper_code[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
-mdc_code11 = [mdc_code[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
-adrg_code11 = [adrg_code[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
-drg_code11 = [drg_code[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
-oper_code11 = [oper_code[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
-error_log11 = [error_log[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
-log11 = [log[i] for i in range(len(base_id)) if drg_code[i] == '9999' and in_days[i]>60]
+def data_9999_1(zd,bi,drg):
+    return [zd[i] for i in range(len(bi)) if drg[i] == '9999']
+
+base_id1 =data_9999_1(base_id,base_id,drg_code)
+sex1 = data_9999_1(sex,base_id,drg_code)
+age1 = data_9999_1(age,base_id,drg_code)
+baby_age1 = data_9999_1(baby_age,base_id,drg_code)
+in_days1 = data_9999_1(in_days,base_id,drg_code)
+hos_amount1 = data_9999_1(hos_amount,base_id,drg_code)
+main_diag_code1 = data_9999_1(main_diag_code,base_id,drg_code)
+main_diag_name1 = data_9999_1(main_diag_name,base_id,drg_code)
+other_diags_code1 = data_9999_1(other_diags_code,base_id,drg_code)
+other_oper_code1 = data_9999_1(other_oper_code,base_id,drg_code)
+mdc_code1 = data_9999_1(mdc_code,base_id,drg_code)
+adrg_code1 = data_9999_1(adrg_code,base_id,drg_code)
+drg_code1 = data_9999_1(drg_code,base_id,drg_code)
+oper_code1 = data_9999_1(oper_code,base_id,drg_code)
+error_log1 = data_9999_1(error_log,base_id,drg_code)
+log1 = data_9999_1(log,base_id,drg_code)
+
+def data_9999_2(zd,bi,drg,indays):
+    return [zd[i] for i in range(len(bi)) if drg[i] == '9999' and indays[i]>60]
+base_id11 = data_9999_2(base_id1,base_id1,drg_code1,in_days1)
+sex11  = data_9999_2(sex1,base_id1,drg_code1,in_days1)
+age11 = data_9999_2(age1,base_id1,drg_code1,in_days1)
+baby_age11 = data_9999_2(baby_age1,base_id1,drg_code1,in_days1)
+in_days11 = data_9999_2(in_days1,base_id1,drg_code1,in_days1)
+hos_amount11 = data_9999_2(hos_amount1,base_id1,drg_code1,in_days1)
+main_diag_code11 = data_9999_2(main_diag_code1,base_id1,drg_code1,in_days1)
+main_diag_name11 = data_9999_2(main_diag_name1,base_id1,drg_code1,in_days1)
+other_diags_code11 = data_9999_2(other_diags_code1,base_id1,drg_code1,in_days1)
+other_oper_code11 = data_9999_2(other_oper_code1,base_id1,drg_code1,in_days1)
+mdc_code11 = data_9999_2(mdc_code1,base_id1,drg_code1,in_days1)
+adrg_code11 = data_9999_2(adrg_code1,base_id1,drg_code1,in_days1)
+drg_code11 = data_9999_2(drg_code1,base_id1,drg_code1,in_days1)
+oper_code11 = data_9999_2(oper_code1,base_id1,drg_code1,in_days1)
+error_log11 = data_9999_2(error_log1,base_id1,drg_code1,in_days1)
+log11 = data_9999_2(log1,base_id1,drg_code1,in_days1)
 note11 = []
 for i in range(len(base_id11)):
     note11.append('住院时长超过60天')
-base_id12 = [base_id[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0) ]
-sex12 = [sex[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
-age12 = [age[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
-baby_age12 = [baby_age[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
-in_days12 = [in_days[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
-hos_amout12 = [hos_amout[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
-main_diag_code12 = [main_diag_code[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
-main_diag_name12 = [main_diag_name[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
-other_diags_code12 = [other_diags_code[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
-other_oper_code12 = [other_oper_code[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
-mdc_code12 = [mdc_code[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
-adrg_code12 = [adrg_code[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
-drg_code12 = [drg_code[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
-oper_code12 = [oper_code[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
-error_log12 = [error_log[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
-log12 = [log[i] for i in range(len(base_id)) if (drg_code[i] == '9999' and in_days[i]!=0 and hos_amout[i]/in_days[i]<5) or (drg_code[i] == '9999' and in_days == 0)]
-for  i in range(len(base_id12)):
-    note11.append("费用异常：住院费用/住院时长<5")
 
 
+def data_9999_3(zd,bi,drg,indays,amount):
+    return [zd[i] for i in range(len(bi)) if (drg[i] == '9999' and indays[i]!=0 and amount[i]/indays[i]<5) or (drg[i] == '9999' and indays[i] == 0) ]
 
-#0000
-base_id2 = [base_id[i] for i in range(len(base_id)) if drg_code[i] == '0000']
-sex2 = [sex[i] for i in range(len(base_id)) if drg_code[i] == '0000']
-age2 = [age[i] for i in range(len(base_id)) if drg_code[i] == '0000']
-baby_age2 = [baby_age[i] for i in range(len(base_id)) if drg_code[i] == '0000']
-in_days2 = [in_days[i] for i in range(len(base_id)) if drg_code[i] == '0000']
-hos_amout2 = [hos_amout[i] for i in range(len(base_id)) if drg_code[i] == '0000']
-main_diag_code2 = [main_diag_code[i] for i in range(len(base_id)) if drg_code[i] == '0000']
-main_diag_name2 = [main_diag_name[i] for i in range(len(base_id)) if drg_code[i] == '0000']
-other_diags_code2 = [other_diags_code[i] for i in range(len(base_id)) if drg_code[i] == '0000']
-other_oper_code2 = [other_oper_code[i] for i in range(len(base_id)) if drg_code[i] == '0000']
-mdc_code2 = [mdc_code[i] for i in range(len(base_id)) if drg_code[i] == '0000']
-adrg_code2 = [adrg_code[i] for i in range(len(base_id)) if drg_code[i] == '0000']
-drg_code2 = [drg_code[i] for i in range(len(base_id)) if drg_code[i] == '0000']
-oper_code2 = [oper_code[i] for i in range(len(base_id)) if drg_code[i] == '0000']
-error_log2 = [error_log[i] for i in range(len(base_id)) if drg_code[i] == '0000']
-log2 = [log[i] for i in range(len(base_id)) if drg_code[i] == '0000']
+base_id12 = data_9999_3(base_id1,base_id1,drg_code1,in_days1,hos_amount1)
+sex12 = data_9999_3(sex1,base_id1,drg_code1,in_days1,hos_amount1)
+age12 = data_9999_3(age1,base_id1,drg_code1,in_days1,hos_amount1)
+baby_age12 = data_9999_3(baby_age1,base_id1,drg_code1,in_days1,hos_amount1)
+in_days12 = data_9999_3(in_days1,base_id1,drg_code1,in_days1,hos_amount1)
+hos_amount12 = data_9999_3(hos_amount1,base_id1,drg_code1,in_days1,hos_amount1)
+main_diag_code12 = data_9999_3(main_diag_code1,base_id1,drg_code1,in_days1,hos_amount1)
+main_diag_name12 = data_9999_3(main_diag_name1,base_id1,drg_code1,in_days1,hos_amount1)
+other_diags_code12 = data_9999_3(other_diags_code1,base_id1,drg_code1,in_days1,hos_amount1)
+other_oper_code12 = data_9999_3(other_oper_code1,base_id1,drg_code1,in_days1,hos_amount1)
+mdc_code12 = data_9999_3(mdc_code1,base_id1,drg_code1,in_days1,hos_amount1)
+adrg_code12 = data_9999_3(adrg_code1,base_id1,drg_code1,in_days1,hos_amount1)
+drg_code12 = data_9999_3(drg_code1,base_id1,drg_code1,in_days1,hos_amount1)
+oper_code12 = data_9999_3(oper_code1,base_id1,drg_code1,in_days1,hos_amount1)
+error_log12 = data_9999_3(error_log1,base_id1,drg_code1,in_days1,hos_amount1)
+log12 = data_9999_3(log1,base_id1,drg_code1,in_days1,hos_amount1)
+note12 = []
+for i in range(len(base_id12)):
+    note12.append('费用异常：住院费用/住院时间<5')
+# 0000
+def data_0000_1(zd,bi,drg):
+    return [zd[i] for i in range(len(bi)) if drg[i] == '0000']
+base_id2 = data_0000_1(base_id,base_id,drg_code)
+sex2 = data_0000_1(sex,base_id,drg_code)
+age2 = data_0000_1(age,base_id,drg_code)
+baby_age2 = data_0000_1(baby_age,base_id,drg_code)
+in_days2 = data_0000_1(in_days,base_id,drg_code)
+hos_amount2 = data_0000_1(hos_amount,base_id,drg_code)
+main_diag_code2 = data_0000_1(main_diag_code,base_id,drg_code)
+main_diag_name2 = data_0000_1(main_diag_name,base_id,drg_code)
+other_diags_code2 = data_0000_1(other_diags_code,base_id,drg_code)
+other_oper_code2 = data_0000_1(other_oper_code,base_id,drg_code)
+mdc_code2 = data_0000_1(mdc_code,base_id,drg_code)
+adrg_code2 = data_0000_1(adrg_code,base_id,drg_code)
+drg_code2 = data_0000_1(drg_code,base_id,drg_code)
+oper_code2 = data_0000_1(oper_code,base_id,drg_code)
+error_log2 = data_0000_1(error_log,base_id,drg_code)
+log2 = data_0000_1(log,base_id,drg_code)
 
-#无mdc
+# 诊断详情
+diag_detail_id = get_excel_data(path2,'BASE_ID')
+diag_detail_diag_code = get_excel_data(path2,'SICKNESS_CODE')
+
+def diag_detail(zd):
+    return [zd[i] for i in range(len(base_id2)) for j in range(len(diag_detail_id)) if base_id2[i] == diag_detail_id[j]]
+
+base_id21 = diag_detail(base_id2)
+sex21 = diag_detail(sex2)
+age21 = diag_detail(age2)
+baby_age21 = diag_detail(baby_age2)
+in_days21 = diag_detail(in_days2)
+hos_amount21 = diag_detail(hos_amount2)
+main_diag_code21 = diag_detail(main_diag_code2)
+main_diag_name21 = diag_detail(main_diag_name2)
+other_diags_code21 = diag_detail(other_diags_code2)
+other_oper_code21 = diag_detail(other_oper_code2)
+mdc_code21 = diag_detail(mdc_code2)
+adrg_code21 = diag_detail(adrg_code2)
+drg_code21 = diag_detail(drg_code2)
+oper_code21 = diag_detail(oper_code2)
+error_log21 = diag_detail(error_log2)
+log21 = diag_detail(log2)
+diag_code21 = [] #在诊断详情中匹配出来的诊断编码
+for i in base_id2:
+    for j in range(len(diag_detail_id)):
+        if i == diag_detail_id[j]:
+            diag_code21.append(diag_detail_diag_code[j])
+            break
+
+# diag_code21是0000837能在诊断详情中找到的诊断编码共797 拿797去与国临2.0编码去比较
+# 国临2.0
+# 匹配不到国临2.0编码
+base_id22 = []
+sex22 = []
+age22 = []
+baby_age22 = []
+in_days22 = []
+hos_amount22 = []
+main_diag_code22 = []
+main_diag_name22 = []
+other_diags_code22 = []
+other_oper_code22 = []
+mdc_code22 = []
+adrg_code22 = []
+drg_code22 = []
+oper_code22 = []
+error_log22 = []
+log22 = []
+diag_code22 = [] # 在诊断详情中匹配出来的诊断编码
+note22 = []
+# 匹配到国临2.0编码，再与映射关系进行匹配
+base_id23 = []
+sex23 = []
+age23 = []
+baby_age23 = []
+in_days23 = []
+hos_amount23 = []
+main_diag_code23 = []
+main_diag_name23 = []
+other_diags_code23 = []
+other_oper_code23 = []
+mdc_code23 = []
+adrg_code23 = []
+drg_code23 = []
+oper_code23 = []
+error_log23 = []
+log23 = []
+diag23 = []
+# diag_code23 = [] # 在诊断详情中匹配出来的诊断编码
+note23 = []
+icd_code = get_excel_data(path3,'ICD_CODE')
+for i in range(len(diag_code21)):
+    if diag_code21[i] not in icd_code: # 匹配不到国临2.0编码
+        base_id22.append(base_id21[i])
+        sex22.append(sex21[i])
+        age22.append(age21[i])
+        baby_age22.append(baby_age21[i])
+        in_days22.append(in_days21[i])
+        hos_amount22.append(hos_amount21[i])
+        main_diag_code22.append(main_diag_code21[i])
+        main_diag_name22.append(main_diag_name21[i])
+        other_diags_code22.append(other_diags_code21[i])
+        other_oper_code22.append(other_oper_code21[i])
+        mdc_code22.append(mdc_code21[i])
+        adrg_code22.append(adrg_code21[i])
+        drg_code22.append(drg_code21[i])
+        oper_code22.append(oper_code21[i])
+        error_log22.append(error_log21[i])
+        log22.append(log21[i])
+        note22.append('非国临2.0编码')
+    else:
+        base_id23.append(base_id21[i])
+        sex23.append(sex21[i])
+        age23.append(age21[i])
+        baby_age23.append(baby_age21[i])
+        in_days23.append(in_days21[i])
+        hos_amount23.append(hos_amount21[i])
+        main_diag_code23.append(main_diag_code21[i])
+        main_diag_name23.append(main_diag_name21[i])
+        other_diags_code23.append(other_diags_code21[i])
+        other_oper_code23.append(other_oper_code21[i])
+        mdc_code23.append(mdc_code21[i])
+        adrg_code23.append(adrg_code21[i])
+        drg_code23.append(drg_code21[i])
+        oper_code23.append(oper_code21[i])
+        error_log23.append(error_log21[i])
+        diag23.append(diag_code21[i])
+        log23.append(log21[i])
+# 742(base_id23)与2.0到CHS直接映射  （在跑结果的时候问一遍映射关系是否都已经更改好了）
+# 国临2.0-CHS直接映射的国临2.0编码
+glTchs= get_excel_data(path4,'GL2_CODE')
+for i in range(len(base_id23)):
+    if base_id23[i] not in glTchs:
+        note23.append('无国临2.0编码到CHS映射关系')
+
+# #无mdc
 base_id3 = [base_id[i] for i in range(len(base_id)) if mdc_code[i] == '']
 sex3 = [sex[i] for i in range(len(base_id)) if mdc_code[i] == '']
 age3 = [age[i] for i in range(len(base_id)) if mdc_code[i] == '']
 baby_age3 = [baby_age[i] for i in range(len(base_id)) if mdc_code[i] == '']
 in_days3 = [in_days[i] for i in range(len(base_id)) if mdc_code[i] == '']
-hos_amout3 = [hos_amout[i] for i in range(len(base_id)) if mdc_code[i] == '']
+hos_amount3 = [hos_amount[i] for i in range(len(base_id)) if mdc_code[i] == '']
 main_diag_code3 = [main_diag_code[i] for i in range(len(base_id)) if mdc_code[i] == '']
 main_diag_name3 = [main_diag_name[i] for i in range(len(base_id)) if mdc_code[i] == '']
 other_diags_code3 = [other_diags_code[i] for i in range(len(base_id)) if mdc_code[i] == '']
@@ -121,13 +271,54 @@ oper_code3 = [oper_code[i] for i in range(len(base_id)) if mdc_code[i] == '']
 error_log3 = [error_log[i] for i in range(len(base_id)) if mdc_code[i] == '']
 log3 = [log[i] for i in range(len(base_id)) if mdc_code[i] == '']
 
-# 有mdc，无adrg,无drg
+# MDC与诊断编码对应表：
+mdc_code_dic = get_excel_data(path6,'MDC_CODE')
+diag_code_dic = get_excel_data(path6,'DIAG_CODE')
+# 查看没有MDC的main_diag_code 是否存在于MDC_DIC中，如果不存在，那么没有mdc
+base_id31 = []
+sex31 = []
+age31 = []
+baby_age31 = []
+in_days31 = []
+hos_amount31 = []
+main_diag_code31 = []
+main_diag_name31 = []
+other_diags_code31 = []
+other_oper_code31 = []
+mdc_code31 = []
+adrg_code31 = []
+drg_code31 = []
+oper_code31 = []
+error_log31 = []
+log31 = []
+note31 = []
+for i in range(len(base_id3)):
+    if main_diag_code3[i] not in diag_code_dic:
+        base_id31.append(base_id3[i])
+        sex31.append(sex3[i])
+        age31.append(age3[i])
+        baby_age31.append(baby_age3[i])
+        in_days31.append(in_days3[i])
+        hos_amount31.append(hos_amount3[i])
+        main_diag_code31.append(main_diag_code3[i])
+        main_diag_name31.append(main_diag_name3[i])
+        other_diags_code31.append(other_diags_code3[i])
+        other_oper_code31.append(other_oper_code3[i])
+        mdc_code31.append(mdc_code3[i])
+        adrg_code31.append(adrg_code3[i])
+        drg_code31.append(drg_code3[i])
+        oper_code31.append(oper_code3[i])
+        error_log31.append(error_log3[i])
+        log31.append(log3[i])
+        note31.append("该病例诊断编码找不到对应的MDC组")
+#
+# # 有mdc，无adrg,无drg
 base_id4 = [base_id[i] for i in range(len(base_id)) if mdc_code[i] != '' and adrg_code == '']
 sex4 = [sex[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
 age4 = [age[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
 baby_age4 = [baby_age[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
 in_days4 = [in_days[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-hos_amout4 = [hos_amout[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
+hos_amout4 = [hos_amount[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
 main_diag_code4 = [main_diag_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
 main_diag_name4 = [main_diag_name[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
 other_diags_code4 = [other_diags_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
@@ -138,14 +329,15 @@ drg_code4 = [drg_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and a
 oper_code4 = [oper_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
 error_log4 = [error_log[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
 log4 = [log[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code == '']
-# 有mdc  有adrg 无drg
 
+# # 有mdc  有adrg 无drg
+#
 base_id5 = [base_id[i] for i in range(len(base_id)) if mdc_code[i] != '' and adrg_code != '' and drg_code == '']
 sex5 = [sex[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
 age5 = [age[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
 baby_age5 = [baby_age[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
 in_days5 = [in_days[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
-hos_amout5 = [hos_amout[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
+hos_amout5 = [hos_amount[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
 main_diag_code5 = [main_diag_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
 main_diag_name5 = [main_diag_name[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
 other_diags_code5 = [other_diags_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
@@ -156,3 +348,6 @@ drg_code5 = [drg_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and a
 oper_code5 = [oper_code[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
 error_log5 = [error_log[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
 log5 = [log[i] for i in range(len(base_id)) if mdc_code[i] == '' and adrg_code != '' and drg_code == '']
+note51 =[]
+for i in range(len(base_id5)):
+    note51.append('该ADRG组没有细化到drg组')
