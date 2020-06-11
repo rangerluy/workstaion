@@ -8,7 +8,6 @@ start = time.time()
 cf = configparser.ConfigParser()
 cf.read('config.ini', encoding='UTF-8')
 
-print(cf.get('xl_name1', 'xl'))
 path1 = cf.get('xl_name1', 'xl')
 
 
@@ -17,101 +16,133 @@ def get_excel_data(excel_name, column_name):
     return [i for i in df[column_name]]
 
 
-base_id = get_excel_data(path1, 'BASE_ID')
-sex = get_excel_data(path1, 'SEX')
-age = get_excel_data(path1, 'AGE')
-baby_age = get_excel_data(path1, 'BABY_AGE')
-in_days = get_excel_data(path1, 'IN_DAYS')
-hos_amount = get_excel_data(path1, 'HOS_AMOUNT')
-main_diag_code = get_excel_data(path1, 'MAIN_DIAG_CODE')
-main_diag_name = get_excel_data(path1, 'MAIN_DIAG_NAME')
-other_diags_code = get_excel_data(path1, 'OTHER_DIAGS_CODE')
-other_oper_code = get_excel_data(path1, 'OTHER_OPER_CODE')
-mdc_code = get_excel_data(path1, 'MDC_CODE')
-adrg_code = get_excel_data(path1, 'ADRG_CODE')
-drg_code = get_excel_data(path1, 'DRG_CODE')
-oper_code = get_excel_data(path1, 'OPER_CODE')
-error_log = get_excel_data(path1, 'ERROR_LOG')
-log = get_excel_data(path1, 'LOG')
+df1 = pd.read_excel(path1, keep_default_na=False)
 
+base_id = []
+sex = []
+age = []
+baby_age = []
+in_days = []
+hos_amount = []
+main_diag_code = []
+main_diag_name = []
+other_diags_code = []
+other_oper_code = []
+mdc_code = []
+adrg_code = []
+drg_code = []
+oper_code = []
+error_log = []
+log = []
+
+for i in df1['BASE_ID']:
+    base_id.append(i)
+for i in df1['SEX']:
+    sex.append(i)
+for i in df1['AGE']:
+    age.append(i)
+for i in df1['BABY_AGE']:
+    baby_age.append(i)
+for i in df1['IN_DAYS']:
+    in_days.append(i)
+for i in df1['HOS_AMOUNT']:
+    hos_amount.append(i)
+for i in df1['MAIN_DIAG_CODE']:
+    main_diag_code.append(i)
+for i in df1['MAIN_DIAG_NAME']:
+    main_diag_name.append(i)
+for i in df1['OTHER_DIAGS_CODE']:
+    other_diags_code.append(i)
+for i in df1['OTHER_OPER_CODE']:
+    other_oper_code.append(i)
+for i in df1['MDC_CODE']:
+    mdc_code.append(i)
+for i in df1['ADRG_CODE']:
+    adrg_code.append(i)
+for i in df1['DRG_CODE']:
+    drg_code.append(i)
+for i in df1['OPER_CODE']:
+    oper_code.append(i)
+for i in df1['ERROR_LOG']:
+    error_log.append(i)
+for i in df1['LOG']:
+    log.append(i)
 
 # 分成五部分
 # 9999
-def data_9999_1(zd):
-    return [zd[i] for i in range(len(base_id)) if drg_code[i] == '9999']
 
-
-base_id1 = data_9999_1(base_id)
-sex1 = data_9999_1(sex)
-age1 = data_9999_1(age)
-baby_age1 = data_9999_1(baby_age)
-in_days1 = data_9999_1(in_days)
-hos_amount1 = data_9999_1(hos_amount)
-main_diag_code1 = data_9999_1(main_diag_code)
-main_diag_name1 = data_9999_1(main_diag_name)
-other_diags_code1 = data_9999_1(other_diags_code)
-other_oper_code1 = data_9999_1(other_oper_code)
-mdc_code1 = data_9999_1(mdc_code)
-adrg_code1 = data_9999_1(adrg_code)
-drg_code1 = data_9999_1(drg_code)
-oper_code1 = data_9999_1(oper_code)
-error_log1 = data_9999_1(error_log)
-log1 = data_9999_1(log)
-
-
-def data_9999_2(zd):
-    return [zd[i] for i in range(len(base_id1)) if drg_code1[i] == '9999' and in_days1[i] > 60]
-
-
-base_id11 = data_9999_2(base_id1)
-sex11 = data_9999_2(sex1)
-age11 = data_9999_2(age1)
-baby_age11 = data_9999_2(baby_age1)
-in_days11 = data_9999_2(in_days1)
-hos_amount11 = data_9999_2(hos_amount1)
-main_diag_code11 = data_9999_2(main_diag_code1)
-main_diag_name11 = data_9999_2(main_diag_name1)
-other_diags_code11 = data_9999_2(other_diags_code1)
-other_oper_code11 = data_9999_2(other_oper_code1)
-mdc_code11 = data_9999_2(mdc_code1)
-adrg_code11 = data_9999_2(adrg_code1)
-drg_code11 = data_9999_2(drg_code1)
-oper_code11 = data_9999_2(oper_code1)
-error_log11 = data_9999_2(error_log1)
-log11 = data_9999_2(log1)
+base_id11 = []
+sex11 = []
+age11 = []
+baby_age11 = []
+in_days11 = []
+hos_amount11 = []
+main_diag_code11 = []
+main_diag_name11 = []
+other_diags_code11 = []
+other_oper_code11 = []
+mdc_code11 = []
+adrg_code11 = []
+drg_code11 = []
+oper_code11 = []
+error_log11 = []
+log11 = []
 note11 = []
-for i in range(len(base_id11)):
-    note11.append('住院时长超过60天')
+
+for i in range(len(base_id)):
+    if drg_code[i] == '9999' and in_days[i] > 60:
+        base_id11.append(base_id[i])
+        sex11.append(sex[i])
+        age11.append(age[i])
+        baby_age11.append(baby_age[i])
+        in_days11.append(in_days[i])
+        hos_amount11.append(hos_amount[i])
+        main_diag_code11.append(main_diag_code[i])
+        main_diag_name11.append(main_diag_name[i])
+        other_diags_code11.append(other_diags_code[i])
+        other_oper_code11.append(other_oper_code[i])
+        mdc_code11.append(mdc_code[i])
+        adrg_code11.append(adrg_code[i])
+        drg_code11.append(drg_code[i])
+        # drg_code1.append()
+        oper_code11.append(oper_code[i])
+        error_log11.append(error_log[i])
+        log11.append(log[i])
+        note11.append('住院时长超过60天')
 
 
+#
 def data_9999_3(zd):
-    return [zd[i] for i in range(len(base_id1)) if
-            (drg_code1[i] == '9999' and in_days1[i] != 0 and hos_amount1[i] / in_days1[i] < 5) or (
-                    drg_code1[i] == '9999' and in_days1[i] == 0)]
+    return [zd[i] for i in range(len(base_id)) if
+            (drg_code[i] == '9999' and in_days[i] != 0 and hos_amount[i] / in_days[i] < 5) or
+            (drg_code[i] == '9999' and in_days[i] == 0)]
 
 
-base_id12 = data_9999_3(base_id1)
-sex12 = data_9999_3(sex1)
-age12 = data_9999_3(age1)
-baby_age12 = data_9999_3(baby_age1)
-in_days12 = data_9999_3(in_days1)
-hos_amount12 = data_9999_3(hos_amount1)
-main_diag_code12 = data_9999_3(main_diag_code1)
-main_diag_name12 = data_9999_3(main_diag_name1)
-other_diags_code12 = data_9999_3(other_diags_code1)
-other_oper_code12 = data_9999_3(other_oper_code1)
-mdc_code12 = data_9999_3(mdc_code1)
-adrg_code12 = data_9999_3(adrg_code1)
-drg_code12 = data_9999_3(drg_code1)
-oper_code12 = data_9999_3(oper_code1)
+#
+base_id12 = data_9999_3(base_id)
+sex12 = data_9999_3(sex)
+age12 = data_9999_3(age)
+baby_age12 = data_9999_3(baby_age)
+in_days12 = data_9999_3(in_days)
+hos_amount12 = data_9999_3(hos_amount)
+main_diag_code12 = data_9999_3(main_diag_code)
+main_diag_name12 = data_9999_3(main_diag_name)
+other_diags_code12 = data_9999_3(other_diags_code)
+other_oper_code12 = data_9999_3(other_oper_code)
+mdc_code12 = data_9999_3(mdc_code)
+adrg_code12 = data_9999_3(adrg_code)
+drg_code12 = data_9999_3(drg_code)
+oper_code12 = data_9999_3(oper_code)
 error_log12 = data_9999_3(error_log)
-log12 = data_9999_3(log1)
+log12 = data_9999_3(log)
 note12 = []
+
 for i in range(len(base_id12)):
     note12.append('费用异常:住院费用/住院时长<5')
 
 
-# 0000
+# # 0000
+
 def data_0000_1(zd):
     return [zd[i] for i in range(len(base_id)) if drg_code[i] == '0000']
 
@@ -133,7 +164,7 @@ oper_code2 = data_0000_1(oper_code)
 error_log2 = data_0000_1(error_log)
 log2 = data_0000_1(log)
 
-# 诊断详情
+# # 诊断详情
 path2 = cf.get('xl_name2', 'xl')
 diag_detail_id = get_excel_data(path2, 'BASE_ID')
 diag_detail_diag_code = get_excel_data(path2, 'SICKNESS_CODE')
@@ -255,6 +286,7 @@ for i in range(len(base_id23)):
         note23.append('无国临2.0到CHS分组方案编码映射')
 
 
+#
 def non_name(zd):
     return [zd[i] for i in range(len(base_id)) if drg_code[i] == '0000' and main_diag_name[i] == '']
 
@@ -278,7 +310,8 @@ log24 = non_name(log)
 note24 = []
 for i in range(len(base_id24)):
     note24.append('无主诊断编码，主诊断名称')
-# #无mdc
+
+# # #无mdc
 base_id3 = [base_id[i] for i in range(len(base_id)) if mdc_code[i] == '']
 sex3 = [sex[i] for i in range(len(base_id)) if mdc_code[i] == '']
 age3 = [age[i] for i in range(len(base_id)) if mdc_code[i] == '']
@@ -337,7 +370,8 @@ for i in range(len(base_id3)):
         error_log31.append(error_log3[i])
         log31.append(log3[i])
         note31.append("该病例诊断编码无对应的MDC组")
-#
+
+# #
 # # 有mdc，无adrg,无drg
 base_id4 = [base_id[i] for i in range(len(base_id)) if mdc_code[i] != '' and adrg_code[i] == '']
 sex4 = [sex[i] for i in range(len(base_id)) if mdc_code[i] != '' and adrg_code[i] == '']
@@ -358,7 +392,8 @@ log4 = [log[i] for i in range(len(base_id)) if mdc_code[i] != '' and adrg_code[i
 note41 = []
 for i in range(len(base_id4)):
     note41.append("符合入MDC的条件，但没有入到ADRG组")
-# drg_adrg_dic
+
+# # drg_adrg_dic
 path7 = cf.get('xl_name7', 'xl')
 diag_code_adrg_dic = get_excel_data(path7, "DIAG_CODE")
 
@@ -389,7 +424,7 @@ note51 = []
 for i in range(len(base_id5)):
     note51.append('该ADRG组没有细化到DRG组')
 
-#
+# #
 base_id_all = []
 sex_all = []
 age_all = []
@@ -552,6 +587,7 @@ for i in range(len(base_id5)):
 
 dic = {}
 dic['base_id'] = base_id_all
+dic['sex'] = sex_all
 dic['age'] = age_all
 dic['in_days'] = in_days_all
 dic['hos_amount'] = hos_amount_all
@@ -567,6 +603,6 @@ dic['error_log'] = error_log_all
 dic['log'] = log_all
 dic['note'] = note_all
 df4 = pd.DataFrame(dic)
-df4.to_excel('test.xlsx')
+df4.to_excel('test2.xlsx')
 end = time.time()
 print((end - start) / 60, '分')
