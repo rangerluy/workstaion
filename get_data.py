@@ -169,10 +169,8 @@ path2 = cf.get('xl_name2', 'xl')
 diag_detail_id = get_excel_data(path2, 'BASE_ID')
 diag_detail_diag_code = get_excel_data(path2, 'SICKNESS_CODE')
 
-
 def diag_detail(zd):
     return [zd[i] for i in range(len(base_id2)) for j in range(len(diag_detail_id)) if base_id2[i] == diag_detail_id[j]]
-
 
 base_id21 = diag_detail(base_id2)
 sex21 = diag_detail(sex2)
