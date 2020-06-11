@@ -1,0 +1,26 @@
+path1 = '未入组.xlsx'
+path2 = '2019诊断详情.xlsx' # 2019诊断详情
+path3 = '国临2.0诊断编码.xlsx' # 国临2.0诊断编码
+path4 = '国临2-CHS直接映射.xlsx' # 国临2.0到CHS分组方案直接映射
+path5 = '国临2-CHS无法直接映射.xlsx' # 国临2.0无法直接映射到CHS分组方案
+path6 = 'CHS_DRGS_DIC_MDC.xlsx' # MDC_CODE与诊断名称对应表
+path7 = 'CHS_DRGS_DIC_ADRG_DIAG.xlsx' # ADRG与诊断名称对应表
+
+s = """
+BASE_ID
+SEX
+AGE
+BABY_AGE
+IN_DAYS
+HOS_AMOUNT
+MAIN_DIAG_CODE
+MAIN_DIAG_NAME
+OTHER_DIAGS_CODE
+OTHER_OPER_CODE
+MDC_CODE
+ADRG_CODE
+DRG_CODE
+OPER_CODE
+ERROR_LOG
+LOG
+"""
